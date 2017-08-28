@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
+/******/ 	__webpack_require__.p = "/output/";
 /******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 3);
@@ -80,7 +80,7 @@ Object.defineProperty(exports, "__esModule", {
 __webpack_require__(5);
 
 var greeting = function greeting() {
-  var str = "<h1>Hello, World!</h1>";
+  var str = "<h1>Hello, World!!!!</h1>";
   document.write(str);
 }; // function greeting (){
 //   let str = "<h1>Hello, World!</h1>";

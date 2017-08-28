@@ -5,7 +5,7 @@
 import '../css/index.css'
 
 var greeting = function () {
-  let str = "<h1>Hello, World!</h1>";
+  let str = "<h1>Hi, you guys</h1>";
   document.write(str);
 }
 
