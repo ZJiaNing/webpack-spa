@@ -8,7 +8,7 @@ const webpack = require('webpack')
 const path = require('path')
 
 // 使用这个插件就把css从js中独立抽离出来
-// const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -32,17 +32,17 @@ module.exports = {
         loader: 'babel-loader',   // 不知道为什么index.js的编译在没有加这个loader的时候也可以运行正常，并且是已经处于编译完成的状态了
         exclude: /node_modules/
       },
-      {
-        test: /\.css$/,
-        loader: ["style-loader", "css-loader"]
-      }
       // {
       //   test: /\.css$/,
-      //   loader: ExtractTextPlugin.extract({
-      //     fallback: "style-loader",
-      //     use: "css-loader"
-      //   })
+      //   loader: ["style-loader", "css-loader"]
       // }
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
+      }
     ]
   },
   plugins: [
