@@ -1,14 +1,16 @@
-// 可以看下这边文章
+/*
+* webpack基本配置文件
+*/
+
 // http://acgtofe.com/posts/2016/02/full-live-reload-for-express-with-webpack
 
-var webpack = require('webpack')
-var path = require('path')
+const webpack = require('webpack')
+const path = require('path')
 
 // 使用这个插件就把css从js中独立抽离出来
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+// const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-//
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // CAUTION: __dirname是webpack所在的位置的路径
 // 在此情况下，即为D:\Project\webpack-spa\build
@@ -32,20 +34,24 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        loader: ["style-loader", "css-loader"]
       }
+      // {
+      //   test: /\.css$/,
+      //   loader: ExtractTextPlugin.extract({
+      //     fallback: "style-loader",
+      //     use: "css-loader"
+      //   })
+      // }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Hello, world&&&',
-      filename: 'index.html',   // 渲染输出html文件名,路径相对于 output.path 的值
+      title: 'Hello, world',
+      filename: 'index.html',                                   // 渲染输出html文件名,路径相对于 output.path 的值
       template: path.resolve(__dirname, '../src/index.html'),   // 渲染输出html文件名,路径相对于 output.path 的值
       inject: true
-    }),
-    new ExtractTextPlugin("styles.css")
-  ],
-  devServer: {
-    inline: true
-  }
+    })
+    // new ExtractTextPlugin("[name].[hash:5].css")             // 如果要有路径配置的话，直接在引号中写就好了
+  ]
 }

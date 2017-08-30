@@ -5,9 +5,13 @@
 import '../css/index.css'
 
 var greeting = function () {
-  let str = "<h1>Hi, you guys</h1>";
+  let str = "<h1>Hi, you guy</h1>";
+  console.log('you got me.');
+  console.log('you did got me!!');
   document.write(str);
 }
+
+
 
 export default greeting
 

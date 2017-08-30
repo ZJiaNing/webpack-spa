@@ -1,6 +1,10 @@
 body{
   background-color: whitesmoke;
 }
+h1{
+  font-size: 16px;
+  text-decoration: underline;
+}
 .item{
   position: relative;
   float: left;
