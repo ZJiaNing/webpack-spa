@@ -8,6 +8,7 @@ var greeting = function () {
   let str = "<h1>Hi, you guy</h1>";
   console.log('you got me.');
   console.log('you did got me!!');
+  console.log('are you got me??');
   document.write(str);
 }
 

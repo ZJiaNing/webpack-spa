@@ -55,3 +55,13 @@ module.exports = {
     // new ExtractTextPlugin("[name].[hash:5].css")             // 如果要有路径配置的话，直接在引号中写就好了
   ]
 }
+
+
+/*
+* CAUTION
+* ExtractTextPlugin 这个插件如果在这个基本配置文件中使用了
+* 但是在webpack.config.dev中并没有使用的话，则会报错
+* extract-text-webpack-plugin loader is used without the corresponding plugin
+* 但是矛盾的是开发环境没有使用这个插件的必要，以及如果用了，则更新css的热加载就无效了
+* 暂时不知道要怎么解决？？
+*/
