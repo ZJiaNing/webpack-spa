@@ -1,16 +1,29 @@
 /*
-* 用于生产环境下的配置文件
+* 用于生产环境下的配置文件  使用webpack-merge进行配置参数的合并
 * 脚本命令：npm run build
-* 需要达成的目标是将css文件抽离出js，但是应该怎么做呢？
+* 需要达成的目标是将css文件抽离出js
+* 打包分析工具webpack-bundle-analyzer
+* 代码压缩
 */
 
 const webpack = require('webpack')
+const merge = require('webpack-merge')
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 
 // 导入基本的配置
-const config = require('./webpack.config.js')
+const baseWebpackConfig = require('./webpack.config.js')
 
-config.plugins.push(new ExtractTextPlugin("[name].[hash:5].css"));
+const config = merge(baseWebpackConfig, {
+  plugins: [
+    new ExtractTextPlugin("[name].[contenthash:5].css"),
+    new BundleAnalyzerPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({                   // 提取公共js代码
+        names: ['vendors', 'manifest'],
+    })
+  ]
+});
 
 module.exports = config;
 
