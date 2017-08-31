@@ -3,13 +3,15 @@
 * 脚本命令：npm run build
 * 需要达成的目标是将css文件抽离出js
 * 打包分析工具webpack-bundle-analyzer
-* 代码压缩
+* 代码压缩: js: UglifyJsPlugin   css: optimize-css-assets-webpack-plugin
+* css的我找不到别的方法了，都失败了，先暂时放一下吧
 */
 
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 
 // 导入基本的配置
@@ -17,10 +19,14 @@ const baseWebpackConfig = require('./webpack.config.js')
 
 const config = merge(baseWebpackConfig, {
   plugins: [
+    new webpack.optimize.UglifyJsPlugin(),
     new ExtractTextPlugin("[name].[contenthash:5].css"),
     new BundleAnalyzerPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({                   // 提取公共js代码
-        names: ['vendors', 'manifest'],
+    new webpack.optimize.CommonsChunkPlugin({              // 提取公共js代码
+        names: ['vendors'],
+    }),
+    new OptimizeCssAssetsPlugin({
+
     })
   ]
 });
